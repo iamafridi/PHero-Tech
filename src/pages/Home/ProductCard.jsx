@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product, products, setProducts }) => {
 
     const { _id, name, image, image_url, Brand_name, category, price, description, rating } = product;
 
@@ -27,7 +27,7 @@ const ProductCard = ({ product }) => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/products/${_id}`,{
+                fetch(`http://localhost:5000/products/${_id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -40,6 +40,9 @@ const ProductCard = ({ product }) => {
                                 text: "Your Product has been deleted.",
                                 icon: "success"
                             });
+                            // eslint-disable-next-line react/prop-types
+                            const remaining = products.filter(prod => prod._id !== _id)
+                            setProducts(remaining);
                         }
                     })
             } else if (
