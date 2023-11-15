@@ -1,23 +1,46 @@
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
 
-const handleAddProduct = event =>{
-    event.preventDefault();
-    const form = event.target;
+    const handleAddProduct = event => {
+        event.preventDefault();
+        const form = event.target;
 
-    const name = form.name.value;
-    // console.log(name);
-    const image = form.image.value;
-    const image_url = form.image_url.value;
-    const Brand_name = form.Brand_name.value;
-    const category = form.category.value;
-    const price = form.price.value;
-    const description = form.description.value;
-    const rating = form.rating.value;
+        const name = form.name.value;
+        // console.log(name);
+        const image = form.image.value;
+        const image_url = form.image_url.value;
+        const Brand_name = form.Brand_name.value;
+        const category = form.category.value;
+        const price = form.price.value;
+        const description = form.description.value;
+        const rating = form.rating.value;
 
-    const newProduct ={name,image,image_url,Brand_name,category,price,description,rating}
-    console.log(newProduct);
-}
+        const newProduct = { name, image, image_url, Brand_name, category, price, description, rating }
+        console.log(newProduct);
+
+        // Sending data to the Backend
+        fetch('http://localhost:5000/products',{
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(newProduct)
+        })
+        .then(res=>res.json())
+        .then(data => {
+            console.log(data);
+            if(data.insertedId){
+                Swal.fire({
+                    title: "Product Added!",
+                    text: "Your Product has been added.",
+                    icon: "success"
+                  });
+            }
+        })
+
+
+    }
 
 
 
@@ -97,7 +120,7 @@ const handleAddProduct = event =>{
                     </div>
                     {/* Rating  */}
                     <div className="rating  rating-md rating-half">
-                       <h2 className="font-bold">Rating :</h2>
+                        <h2 className="font-bold">Rating :</h2>
                         <input type="radio" name="rating" className="rating-hidden" />
                         <input type="radio" name="rating" className="bg-green-500 mask mask-star-2 mask-half-1" />
                         <input type="radio" name="rating" className="bg-green-500 mask mask-star-2 mask-half-2" />
@@ -112,12 +135,12 @@ const handleAddProduct = event =>{
                     </div>
                 </div>
 
-                <input  type="submit" value="Add Product" className="btn btn-active btn-neutral w-full mt-5" />
-       
+                <input type="submit" value="Add Product" className="btn btn-active btn-neutral w-full mt-5" />
+
             </form>
-            
-            
-             </div>
+
+
+        </div>
     );
 };
 
