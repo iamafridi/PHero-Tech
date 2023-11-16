@@ -20,7 +20,7 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path:"/",
                 element:<Home></Home>,
-                loader: ()=> fetch('http://localhost:5000/products')
+                loader: ()=> fetch('https://phero-tech-server.vercel.app/products')
             },
             {
                 path:"/addProduct",
@@ -41,17 +41,17 @@ const myCreatedRoute = createBrowserRouter([
             {
                 path:"/myCart",
                 element:<PrivateRoute><MyCart></MyCart></PrivateRoute>,
-                loader: ()=> fetch('http://localhost:5000/products')
+                loader: ()=> fetch('https://phero-tech-server.vercel.app/products')
             },
             {
                 path:"/updateProduct/:id",
                 element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
-                loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
+                loader:({params})=>fetch(`https://phero-tech-server.vercel.app/products/${params.id}`)
             },
             {
                 path: "/users",
                 element:<PrivateRoute><Users></Users></PrivateRoute>,
-                loader:()=> fetch('http://localhost:5000/user')
+                loader:()=> fetch('https://phero-tech-server.vercel.app/user')
             }
         ]
     }

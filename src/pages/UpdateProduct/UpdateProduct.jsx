@@ -24,7 +24,7 @@ const UpdateProduct = () => {
         console.log(updatedProduct);
 
         // Sending data to the Backend
-        fetch(`http://localhost:5000/products/${_id}`,{
+        fetch(`https://phero-tech-server.vercel.app/products/${_id}`,{
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'

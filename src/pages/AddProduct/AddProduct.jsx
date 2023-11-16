@@ -20,7 +20,7 @@ const AddProduct = () => {
         console.log(newProduct);
 
         // Sending data to the Backend
-        fetch('http://localhost:5000/products',{
+        fetch('https://phero-tech-server.vercel.app/products',{
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

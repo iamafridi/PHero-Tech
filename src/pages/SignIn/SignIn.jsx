@@ -24,7 +24,7 @@ const SignIn = () => {
                     lastLoggedAt: result.user?.metadata?.lastSignInTime
                 }
                 // update last logged in data base 
-                fetch('http://localhost:5000/user', {
+                fetch('https://phero-tech-server.vercel.app/user', {
                     method: 'PATCH',
                     headers: {
                         'content-type': 'application/json'
