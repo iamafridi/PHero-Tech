@@ -47,7 +47,7 @@ const UpdateProduct = () => {
     }
 
     return (
-        <div className="bg-orange-200 p-24">
+        <div className="bg-orange-200 p-24 font-poppins">
             <h2 className="text-3xl font-bold text-center">Update Product Here : {name} </h2>
             <form onSubmit={handleUpdateProduct}>
                 <div className="grid grid-cols-2 gap-2">

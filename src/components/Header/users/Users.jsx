@@ -20,10 +20,10 @@ fetch(`http://localhost:5000/user/${id}`,{
 })
     }
     return (
-        <div className="p-24">
-            <h2>Users :{loadedUsers.length}</h2>
+        <div className="p-24 font-poppins">
+            <h2 className="text-3xl text-center font-semibold mb-4">Users :{loadedUsers.length}</h2>
 
-            <div className='overflow-scroll'>
+            <div className='overflow-scroll bg-teal-200 border border-red-400'>
                 <table className='table zebra warn'>
                     <thead>
                         <tr>
@@ -35,24 +35,29 @@ fetch(`http://localhost:5000/user/${id}`,{
                             </th>
 
                             <th>
+                                Last Logged In
+                            </th>
+                            <th>
                                 Action
                             </th>
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="outline ">
                         {
-                            users.map(user => <tr key={user._id}>
-                                <th>
+                            users.map(user => <tr className="outline outline-1 outline-red-600" key={user._id}>
+                                {/* <th>
                                     {user._id}
-                                </th>
-                                <td>
+                                </th> */}
+                                <td className="font-semibold">
                                     {user.email}
                                 </td>
                                 <td>
                                     {user.createAt}
                                 </td>
-
+                                <td>
+                                    {user.lastLoggedAt}
+                                </td>
                                 <td>
                                     <button
                                         onClick={() => handleDelete(user._id)}

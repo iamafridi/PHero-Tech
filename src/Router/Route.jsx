@@ -7,11 +7,15 @@ import UpdateProduct from "../pages/UpdateProduct/UpdateProduct";
 import SignIn from "../pages/SignIn/SignIn";
 import SignUp from "../pages/SignUp/SignUp";
 import Users from "../components/Header/users/Users";
+import PrivateRoute from "../pages/Providers/PrivateRoute";
+import ErrorPage from "../pages/Error/ErrorPage";
+import AboutUs from "../components/About/AboutUs";
 
 const myCreatedRoute = createBrowserRouter([
     {
         path: "/",
         element:<MainLayout></MainLayout>,
+        errorElement:<ErrorPage></ErrorPage>,
         children:[
             {
                 path:"/",
@@ -20,7 +24,11 @@ const myCreatedRoute = createBrowserRouter([
             },
             {
                 path:"/addProduct",
-                element:<AddProduct></AddProduct>
+                element:<PrivateRoute><AddProduct></AddProduct></PrivateRoute>
+            },
+            {
+                path:"/about",
+                element:<AboutUs></AboutUs>
             },
             {
                 path:"/signin",
@@ -32,16 +40,17 @@ const myCreatedRoute = createBrowserRouter([
             },
             {
                 path:"/myCart",
-                element:<MyCart></MyCart>
+                element:<PrivateRoute><MyCart></MyCart></PrivateRoute>,
+                loader: ()=> fetch('http://localhost:5000/products')
             },
             {
                 path:"/updateProduct/:id",
-                element:<UpdateProduct></UpdateProduct>,
+                element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>,
                 loader:({params})=>fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: "/users",
-                element:<Users></Users>,
+                element:<PrivateRoute><Users></Users></PrivateRoute>,
                 loader:()=> fetch('http://localhost:5000/user')
             }
         ]

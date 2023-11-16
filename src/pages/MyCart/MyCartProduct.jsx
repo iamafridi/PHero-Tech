@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 
-const ProductCard = ({ product, products, setProducts }) => {
+const MyCartProduct  = ({ product, products, setProducts }) => {
 
     const { _id, name, image_url, Brand_name, category, price, description, rating } = product;
 
@@ -62,10 +62,10 @@ const ProductCard = ({ product, products, setProducts }) => {
     return (
         <div className='font-poppins overflow-hidden border rounded-lg has-shadow w-96'>
             <div className="items-center justify-center m-2">
-                <img src={image_url}
-                    className='aspect-video rounded-b-none w-96 h-fit '
-                    alt='' />
-
+            <img src={image_url}
+                className='aspect-video rounded-b-none w-96 h-fit '
+                alt='' />
+            
             </div>
             <div className='p-4 flex flex-col gap-2'>
                 <div className='text-xs'>
@@ -81,25 +81,22 @@ const ProductCard = ({ product, products, setProducts }) => {
                 </div>
                 <div className='flex gap-2 justify-between items-center'>
                     <div>
-                        <span className='badge p-4 bg-blue-500 text-white light info'>
+                        <span className='badge light info'>
                             {Brand_name}
                         </span>
-                        <span className='badge bg-blue-100 p-4 light primary'>
-                           $ {price}
+                        <span className='badge light primary'>
+                            {price}
                         </span>
                         <span className='badge light danger'>
                             {rating}
                         </span>
                     </div>
-                    <div className="justify-end">
+                    <div className="justify-end ">
                         <div className="join join-vertical gap-2 ">
-                            <Link to="myCart">
-                                <button className="btn join-item bg-yellow-100">View</button></Link>
-                            <Link to={`/updateProduct/${_id}`}>
-                                <button className="btn bg-blue-200 join-item">Edit</button></Link>
+                            <Link to={`/updateProduct/${_id}`}><button className="btn  bg-blue-100 join-item">Edit</button></Link>
                             <button
                                 onClick={() => handleDelete(_id)}
-                                className="btn join-item bg-red-500 text-white">x</button>
+                                className="btn join-item bg-red-500">x</button>
                         </div>
                     </div>
                 </div>
@@ -109,4 +106,4 @@ const ProductCard = ({ product, products, setProducts }) => {
     );
 };
 
-export default ProductCard;
+export default MyCartProduct;
